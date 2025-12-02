@@ -100,20 +100,18 @@
             border-color: transparent;
         }
 
-        /* --- 佈局與元件 (版面調整核心區) --- */
+        /* --- 佈局與元件 --- */
         .container { 
-            /* 🌟 修改：寬度加寬到 96%，充分利用螢幕空間 */
             max-width: 96%; 
             margin: 0 auto; 
             display: flex; 
-            gap: 25px; /* 間距稍微加大 */
+            gap: 25px; 
             position: relative; 
             align-items: flex-start; 
         }
         
-        /* --- 1. 左側欄位 (縮小) --- */
+        /* --- 1. 左側欄位 --- */
         .left-column {
-            /* 🌟 修改：flex 從 1 改為 0.7，讓它變窄 */
             flex: 0.7;
             display: flex;
             flex-direction: column;
@@ -121,13 +119,13 @@
             top: 20px;
             max-height: 90vh;
             z-index: 80;
-            min-width: 250px; /* 確保最小寬度，字才不會太擠 */
+            min-width: 250px; 
         }
 
         /* Logo */
         .site-logo-container { text-align: center; margin-bottom: 20px; }
         .site-logo {
-            width: 180px; /* 🌟 修改：Logo 稍微縮小一點配合欄寬 */
+            width: 180px; 
             height: auto; border-radius: 50%; border: 4px solid var(--accent-color); 
             box-shadow: 0 5px 15px rgba(0,0,0,0.2); object-fit: cover; background-color: #fff;
         }
@@ -153,14 +151,14 @@
         .ticker-text { display: inline-block; padding-left: 100%; animation: scroll-left 12s linear infinite; color: #FFF; font-weight: bold; font-size: 1rem; letter-spacing: 1px; }
         @keyframes scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
         
-        /* 公告欄 (貼心提醒) */
+        /* 公告欄 */
         .notice-section {
             background: rgba(255, 248, 220, 0.95); 
-            padding: 20px; /* 內距稍微縮小 */
+            padding: 20px; 
             border-radius: 12px; 
             border: 2px solid var(--accent-color);
             box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
-            font-size: 0.9rem; /* 字體稍微縮小 */
+            font-size: 0.9rem; 
             line-height: 1.5;
             overflow-y: auto; 
             flex-grow: 1;
@@ -171,12 +169,10 @@
         .highlight-red { color: #d63031; font-weight: bold; }
         .bank-info { background: #fff; padding: 10px; border-radius: 8px; border: 1px dashed var(--primary-color); font-family: monospace; font-size: 1.1em; color: #333; margin-top: 5px; word-break: break-all; }
 
-        /* --- 2. 商品列表 (放大主視覺) --- */
+        /* --- 2. 商品列表 --- */
         .product-list { 
-            /* 🌟 修改：flex 增加到 3，讓中間變很寬 */
             flex: 3; 
             display: grid; 
-            /* 🌟 修改：強制設定為 3 欄，不管螢幕多大都是三個一列 */
             grid-template-columns: repeat(3, 1fr); 
             gap: 25px; 
             align-content: start; 
@@ -195,7 +191,6 @@
         
         .product-img-box { 
             width: 100%; 
-            /* 🌟 修改：圖片高度增加到 280px，視覺更震撼 */
             height: 280px; 
             background-color: #eee; 
             overflow: hidden; 
@@ -209,16 +204,14 @@
         
         .card-content { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
         .product-cat { font-size: 0.9em; color: var(--accent-color); font-weight: bold; margin-bottom: 5px; }
-        /* 🌟 修改：商品名稱字體加大 */
         .product-name { font-size: 1.4em; font-family: 'Noto Serif TC', serif; font-weight: 900; margin: 8px 0; color: #2c2c2c; line-height: 1.3; }
         .price { color: var(--primary-color); font-weight: bold; font-size: 1.6em; margin: 15px 0; }
         
         button.add-btn { background: linear-gradient(135deg, #8E1E20 0%, #a02d2f 100%); color: white; border: none; padding: 15px; border-radius: 8px; cursor: pointer; width: 100%; font-weight: bold; font-size: 1.1em; box-shadow: 0 4px 6px rgba(142, 30, 32, 0.2); transition: 0.2s; }
         button.add-btn:hover { filter: brightness(1.1); transform: scale(0.98); }
         
-        /* --- 3. 購物車 (縮小) --- */
+        /* --- 3. 購物車 --- */
         .cart-section { 
-            /* 🌟 修改：flex 縮小為 0.7 */
             flex: 0.7; 
             background: rgba(255, 255, 255, 0.95); 
             padding: 25px; 
@@ -239,7 +232,7 @@
         .checkout-btn { width: 100%; background: linear-gradient(135deg, #2D6A4F 0%, #40916C 100%); color: white; border: none; font-size: 1.2em; padding: 15px; margin-top: 20px; border-radius: 8px; cursor: pointer; font-weight: bold; box-shadow: 0 4px 10px rgba(45, 106, 79, 0.3); transition: 0.3s; }
         .checkout-btn:hover { filter: brightness(1.1); transform: translateY(-2px); }
 
-        /* 社群按鈕區域 */
+        /* 社群按鈕 */
         .social-area { margin-top: 25px; padding-top: 20px; border-top: 2px dashed #eee; display: flex; flex-direction: column; gap: 10px; }
         .social-btn { display: flex; align-items: center; justify-content: center; text-decoration: none; color: white; padding: 12px; border-radius: 8px; font-weight: bold; font-size: 1.1em; transition: transform 0.2s, filter 0.2s; box-shadow: 0 3px 6px rgba(0,0,0,0.15); width: 100%; box-sizing: border-box; }
         .social-btn:hover { transform: translateY(-2px); filter: brightness(1.1); }
@@ -253,6 +246,7 @@
         .float-total { color: #FFD700; font-size: 1.3em; font-weight: bold; font-family: 'Noto Serif TC', serif; }
         .float-btn { background: linear-gradient(135deg, #2D6A4F 0%, #40916C 100%); color: white; border: none; padding: 10px 25px; border-radius: 50px; font-weight: bold; font-size: 1.1em; cursor: pointer; }
 
+        /* --- 彈出視窗 (Modal) --- */
         .modal { display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); justify-content: center; align-items: center; backdrop-filter: blur(5px); animation: fadeIn 0.3s; }
         .modal-content { background: white; padding: 30px; border-radius: 15px; width: 90%; max-width: 500px; max-height: 90vh; overflow-y: auto; box-shadow: 0 10px 40px rgba(0,0,0,0.3); position: relative; }
         .form-group { margin-bottom: 15px; }
@@ -265,8 +259,34 @@
         .submit-btn:hover { background: #a02d2f; }
         @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
 
+        /* --- 🆕 新增：台灣 Pay QR Code 樣式 --- */
+        .qr-code-container {
+            text-align: center;
+            margin: 15px 0;
+            padding: 15px;
+            background: #fff8e1; /* 淡黃色背景凸顯 */
+            border: 2px dashed #D4AF37;
+            border-radius: 8px;
+            display: none; /* 預設隱藏 */
+        }
+        .qr-code-img {
+            max-width: 220px;
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-bottom: 10px;
+            background: #fff;
+            padding: 5px;
+        }
+        .qr-hint {
+            color: #8E1E20;
+            font-weight: bold;
+            font-size: 1em;
+            margin: 5px 0;
+        }
+
         /* --- 手機版響應式設定 --- */
-        /* 當螢幕小於 1200px 時，調整為兩欄或單欄 */
         @media (max-width: 1200px) {
             .product-list { grid-template-columns: repeat(2, 1fr); }
         }
@@ -279,7 +299,6 @@
             .mobile-floating-bar { display: flex; } 
             h1 { font-size: 2.5rem; letter-spacing: 2px; }
             .cat-btn { padding: 10px 20px; font-size: 1.1rem; }
-            /* 手機版商品改為一欄 */
             .product-list { grid-template-columns: 1fr; }
             body { padding: 15px; padding-bottom: 100px; }
         }
@@ -328,7 +347,7 @@
                     <ul style="padding-left: 20px; margin: 5px 0;"><li><strong>7-11 冷凍店到店</strong><br>滿 $2000 免運 (未滿以上酌收運費$100)</li><li><strong>黑貓宅配</strong><br>滿 $3000 免運 (未滿以上酌收運費$200)</li></ul>
                     <div style="margin-top:10px; font-size:0.95em; background:#fff0f0; padding:10px; border-radius:8px; border-left:4px solid #d63031; line-height:1.5;"><strong style="color:#d63031;">⚠️ 特別注意：</strong><br>7-11 門市代收金額<br><strong>不得超過 $2000</strong>！<br>超過金額的朋友會通知麻煩<strong>轉帳至下方美鳳帳號</strong>。</div>
                 </div>
-                <div class="notice-item"><span class="notice-title">💰 付款方式</span>可選「貨到付款」或是「匯款」。</div>
+                <div class="notice-item"><span class="notice-title">💰 付款方式</span>可選「貨到付款」、「匯款」或「台灣Pay掃碼」。</div>
                 <div class="notice-item"><span class="notice-title">🏦 匯款帳戶資訊</span><div class="bank-info"><strong>美鳳的家</strong><br>合作金庫 (006)<br>帳號：<span style="color:#8E1E20; font-weight:bold;">0180717681001</span><br>統編：72466723</div></div>
             </div>
         </div>
@@ -406,12 +425,22 @@
                 <select id="custPayment" onchange="updatePaymentInput()">
                     <option value="貨到付款">貨到付款</option>
                     <option value="匯款">匯款 (需填後五碼)</option>
+                    <option value="台灣Pay">💳 台灣Pay (掃碼支付)</option>
                     <option value="餐廳櫃檯結帳">餐廳櫃檯結帳</option>
                 </select>
             </div>
 
+            <div id="taiwanPayContainer" class="qr-code-container">
+                <p class="qr-hint">📱 請掃描下方 QR Code 付款</p>
+                <img src="image_d2c236.png" class="qr-code-img" alt="台灣Pay收款碼">
+                <p style="font-size: 0.9em; color: #555; margin-bottom: 0;">
+                    應付金額：<span style="color:red; font-weight:bold; font-size:1.4em;">$<span id="qrPayAmount">0</span></span>
+                </p>
+                <p style="font-size:0.8em; color:#999; margin-top:5px;">付款成功後請填寫下方末五碼</p>
+            </div>
+
             <div class="form-group" id="bankInfoContainer" style="display:none;">
-                <label class="required">匯款帳號後五碼</label>
+                <label class="required" id="bankInfoLabel">匯款帳號後五碼</label>
                 <input type="text" id="custLast5Digits" placeholder="請輸入您的帳號後五碼">
             </div>
 
@@ -430,7 +459,7 @@
     </div>
 
     <script>
-        // Google Script 網址 (最新的)
+        // Google Script 網址
         const googleScriptUrl = "https://script.google.com/macros/s/AKfycbxcMFX4Jh4znkBscP85vPW5-Q_Pq2FqPfMMON4jfCUYQZmUDPuuthLokv4q65RqVwO42A/exec";
         
         const CART_STORAGE_KEY = 'meifeng_cart_v2026';
@@ -470,7 +499,7 @@
             { id: 28, name: "客家小炒", price: 380, category: "蔬菜類", image: "veg1.jpg" },
             { id: 29, name: "蛋酥白菜滷", price: 380, category: "蔬菜類", image: "veg3.jpg" },
             { id: 30, name: "雞油燜筍", price: 280, category: "蔬菜類", image: "veg2.jpg" },
-            { id: 31, name: "干貝絲長年菜", price: 280, category: "蔬菜類", image: "veg4.jpg" },         
+            { id: 31, name: "干貝絲長年菜", price: 280, category: "蔬菜類", image: "veg4.jpg" },          
             { id: 32, name: "蘿蔔糕(只能冷藏寄送)", price: 100, category: "甜點類", image: "cake.jpg" },
             { id: 33, name: "芝麻湯圓(只能冷凍寄送)", price: 150, category: "甜點類", image: "sweet1.jpg" },
             { id: 34, name: "花生湯圓(只能冷凍寄送)", price: 150, category: "甜點類", image: "sweet1.jpg" },
@@ -514,7 +543,6 @@
             const addrLabel = document.getElementById('addressLabel');
             const addrInput = document.getElementById('custAddress');
 
-            // 🌟 這裡就是我們剛剛加的清空功能
             addrInput.value = "";
 
             if (delivery === '7-11冷凍店到店') {
@@ -531,22 +559,39 @@
             }
         }
 
+        // 🆕 修正：處理台灣Pay與匯款的邏輯
         function updatePaymentInput() {
             const payment = document.getElementById('custPayment').value;
             const bankContainer = document.getElementById('bankInfoContainer');
+            const tpContainer = document.getElementById('taiwanPayContainer');
+            const bankLabel = document.getElementById('bankInfoLabel');
+            const last5Input = document.getElementById('custLast5Digits');
+
+            // 先全部隱藏
+            bankContainer.style.display = 'none';
+            tpContainer.style.display = 'none';
+            
             if (payment === '匯款') {
                 bankContainer.style.display = 'block';
-            } else {
-                bankContainer.style.display = 'none';
-                document.getElementById('custLast5Digits').value = "";
+                bankLabel.innerText = "匯款帳號後五碼";
+                last5Input.placeholder = "請輸入您的帳號後五碼";
+            } 
+            else if (payment === '台灣Pay') {
+                tpContainer.style.display = 'block'; // 顯示 QR Code
+                bankContainer.style.display = 'block'; // 台灣Pay 也要填末五碼
+                bankLabel.innerText = "台灣Pay/轉帳帳號 末五碼";
+                last5Input.placeholder = "請輸入付款帳號/卡號末五碼";
+                
+                // 更新 QR Code 下方的金額
+                document.getElementById('qrPayAmount').innerText = document.getElementById('totalPrice').innerText;
+            } 
+            else {
+                last5Input.value = "";
             }
         }
 
-       // 🌟 播放影片的函式 (修正版：自動抓取 YouTube 封面圖)
         function playInterviewVideo() {
-            // 這裡是那支影片的 ID
             const videoID = "vDXSZDidzGA";
-            // 這是 YouTube 官方的高畫質縮圖網址
             const youtubeThumb = `https://img.youtube.com/vi/${videoID}/maxresdefault.jpg`;
 
             Swal.fire({
@@ -620,12 +665,17 @@
 
         function openImageModal(src) { document.getElementById("imageModal").style.display = "flex"; document.getElementById("modalImg").src = src; }
         function closeImageModal() { document.getElementById("imageModal").style.display = "none"; }
+        
         function openCheckoutForm() {
             if (cart.length === 0) { 
                 Swal.fire({ icon: 'warning', title: '購物車是空的', text: '客官，先點幾道菜吧！', confirmButtonColor: '#8E1E20' });
                 return; 
             }
             document.getElementById("checkoutModal").style.display = "flex";
+            
+            // 🆕 確保打開視窗時，更新一下台灣Pay區塊的金額顯示
+            document.getElementById('qrPayAmount').innerText = document.getElementById('totalPrice').innerText;
+
             updateAddressInput(); 
             updatePaymentInput();
         }
@@ -703,8 +753,9 @@
                 return; 
             }
 
-            if (payment === '匯款' && !last5) {
-                Swal.fire({ icon: 'warning', title: '資料不完整', text: '選擇匯款請填寫帳號後五碼喔！', confirmButtonColor: '#8E1E20' });
+            // 🆕 檢查：如果是匯款 OR 台灣Pay，都需要填末五碼
+            if ((payment === '匯款' || payment === '台灣Pay') && !last5) {
+                Swal.fire({ icon: 'warning', title: '資料不完整', text: '請填寫帳號/卡號末五碼，方便我們對帳喔！', confirmButtonColor: '#8E1E20' });
                 return;
             }
 
@@ -731,7 +782,14 @@
                 mode: "no-cors", 
                 headers: { "Content-Type": "text/plain" } 
             }).then(() => {
-                Swal.fire({ icon: 'success', title: '訂單已送出', text: '老闆會盡快聯絡您！', confirmButtonColor: '#2D6A4F' });
+                // 🆕 修改：成功送出後的訊息
+                let successMsg = '老闆會盡快聯絡您！';
+                if(payment === '台灣Pay') {
+                    successMsg = '訂單已送出，確認收到款項後會盡快安排出貨！';
+                }
+
+                Swal.fire({ icon: 'success', title: '訂單已送出', text: successMsg, confirmButtonColor: '#2D6A4F' });
+                
                 cart = [];
                 localStorage.removeItem(CART_STORAGE_KEY); 
                 renderCart();
