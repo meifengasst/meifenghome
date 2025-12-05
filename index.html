@@ -23,10 +23,10 @@
             font-family: 'Noto Sans TC', sans-serif; 
             color: var(--text-color);
             margin: 0; 
-            padding: 40px 20px; 
+            /* 🔥 修改處：縮減頂部 Padding，從 40px 改為 10px */
+            padding: 10px 20px 100px 20px; 
             min-height: 100vh;
             background-color: transparent;
-            padding-bottom: 100px; 
         }
 
         /* 背景圖片層 */
@@ -58,8 +58,9 @@
         /* --- 標題與按鈕 --- */
         header { 
             text-align: center; 
-            margin-bottom: 40px; 
-            padding-bottom: 20px; 
+            /* 🔥 修改處：縮減 Header 下方留白，讓內容往上提 */
+            margin-bottom: 25px; 
+            padding-bottom: 15px; 
             border-bottom: 2px solid rgba(255, 215, 0, 0.6); 
         }
 
@@ -67,8 +68,10 @@
         h1 { 
             font-family: 'Noto Serif TC', serif;
             font-weight: 900; 
-            font-size: 4rem;
-            margin-bottom: 20px;
+            /* 🔥 修改處：稍微縮小字體與減少上方邊距 */
+            font-size: 3.5rem;
+            margin-top: 0;     /* 去除上方預設邊距 */
+            margin-bottom: 15px;
             letter-spacing: 4px; 
             background-image: linear-gradient(to bottom, #FFF8D9 0%, #FFD700 30%, #FFC125 60%, #DAA520 100%);
             background-clip: text;
@@ -80,8 +83,8 @@
         /* 分類按鈕 */
         .category-bar { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
         .cat-btn { 
-            padding: 12px 28px; 
-            font-size: 1.2rem; 
+            padding: 10px 24px; /* 🔥 修改處：稍微縮小按鈕內距 */
+            font-size: 1.1rem; 
             border: 2px solid #FFD700; 
             color: #B8860B; 
             background: rgba(255,255,255,0.9); 
@@ -127,7 +130,7 @@
         /* Logo */
         .site-logo-container { text-align: center; margin-bottom: 20px; }
         .site-logo {
-            width: 180px; 
+            width: 160px; /* 🔥 修改處：稍微縮小 Logo */
             height: auto; border-radius: 50%; border: 4px solid var(--accent-color); 
             box-shadow: 0 5px 15px rgba(0,0,0,0.2); object-fit: cover; background-color: #fff;
         }
@@ -318,12 +321,13 @@
         @media (max-width: 1024px) { 
             .container { flex-direction: column; align-items: stretch; } 
             .left-column, .cart-section { position: static; margin-bottom: 20px; max-height: none; }
-            .site-logo { width: 150px; margin-bottom: 20px; }
+            .site-logo { width: 140px; margin-bottom: 15px; }
             .mobile-floating-bar { display: flex; } 
-            h1 { font-size: 2.5rem; letter-spacing: 2px; }
-            .cat-btn { padding: 10px 20px; font-size: 1.1rem; }
+            /* 🔥 修改處：手機版標題也調整大小 */
+            h1 { font-size: 2.2rem; letter-spacing: 2px; margin-top: 5px; }
+            .cat-btn { padding: 8px 16px; font-size: 1rem; }
             .product-list { grid-template-columns: 1fr; }
-            body { padding: 15px; padding-bottom: 100px; }
+            body { padding: 10px 15px 100px 15px; }
         }
     </style>
 </head>
@@ -582,7 +586,7 @@
             { id: 28, name: "客家小炒", price: 380, category: "蔬菜類", image: "veg1.jpg" },
             { id: 29, name: "蛋酥白菜滷", price: 380, category: "蔬菜類", image: "veg3.jpg" },
             { id: 30, name: "雞油燜筍", price: 280, category: "蔬菜類", image: "veg2.jpg" },
-            { id: 31, name: "干貝絲長年菜", price: 280, category: "蔬菜類", image: "veg4.jpg" },          
+            { id: 31, name: "干貝絲長年菜", price: 280, category: "蔬菜類", image: "veg4.jpg" },           
             { id: 32, name: "蘿蔔糕(只能冷藏寄送)", price: 100, category: "甜點類", image: "cake.jpg" },
             { id: 33, name: "芝麻湯圓(只能冷凍寄送)", price: 150, category: "甜點類", image: "sweet1.jpg" },
             { id: 34, name: "花生湯圓(只能冷凍寄送)", price: 150, category: "甜點類", image: "sweet1.jpg" },
