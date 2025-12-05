@@ -146,7 +146,7 @@
             display: flex;
             align-items: center;
             transition: transform 0.2s;
-            flex-shrink: 0; /* 防止被壓縮 */
+            flex-shrink: 0; 
         }
         .video-ticker-btn:hover { transform: scale(1.02); box-shadow: 0 0 15px rgba(255, 215, 0, 0.6); }
         .ticker-icon { background: #FFD700; color: #8E1E20; width: 40px; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; z-index: 2; font-weight: bold; }
@@ -154,7 +154,7 @@
         .ticker-text { display: inline-block; padding-left: 100%; animation: scroll-left 12s linear infinite; color: #FFF; font-weight: bold; font-size: 1rem; letter-spacing: 1px; }
         @keyframes scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
         
-        /* 公告欄 (貼心提醒) - 現在移到右邊購物車下方，樣式微調 */
+        /* 公告欄 */
         .notice-section {
             background: rgba(255, 248, 220, 0.95); 
             padding: 20px; 
@@ -163,7 +163,7 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
             font-size: 0.9rem; 
             line-height: 1.5;
-            margin-top: 25px; /* 增加上方距離，與社群按鈕隔開 */
+            margin-top: 25px; 
         }
         .notice-section h3 { color: var(--primary-color); border-bottom: 2px dashed #ccc; padding-bottom: 10px; margin-top: 0; text-align: center; font-family: 'Noto Serif TC', serif; font-size: 1.2rem; }
         .notice-item { margin-bottom: 15px; }
@@ -244,7 +244,7 @@
         .btn-google { background-color: #DB4437; } 
         .social-btn svg { width: 24px; height: 24px; margin-right: 10px; fill: white; }
 
-        /* --- 店家資訊區塊 (移到左側) --- */
+        /* --- 店家資訊區塊 --- */
         .shop-info { margin-bottom: 20px; font-size: 0.9rem; color: #555; text-align: center; background: #fafafa; padding: 15px; border-radius: 8px; border: 1px solid #eee; }
         .shop-info h3 { font-size: 1.1rem; color: #333; margin-top: 0; margin-bottom: 15px; font-family: 'Noto Serif TC', serif; border-bottom: 1px dashed #ccc; padding-bottom: 5px; }
         .info-item { margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 10px; text-align: left; }
@@ -297,6 +297,19 @@
             margin: 5px 0;
         }
 
+        /* --- 🆕 新增：匯款資訊方塊樣式 --- */
+        .bank-details-box {
+            background: #fffdf5;
+            border: 2px dashed #D4AF37;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            text-align: center;
+            display: none; /* 預設隱藏 */
+        }
+        .bank-details-title { font-weight: bold; font-size: 1.1em; margin-bottom: 8px; color: #333; }
+        .bank-account-num { color: #d63031; font-weight: bold; font-size: 1.2em; letter-spacing: 1px; }
+
         /* --- 手機版響應式設定 --- */
         @media (max-width: 1200px) {
             .product-list { grid-template-columns: repeat(2, 1fr); }
@@ -305,7 +318,6 @@
         @media (max-width: 1024px) { 
             .container { flex-direction: column; align-items: stretch; } 
             .left-column, .cart-section { position: static; margin-bottom: 20px; max-height: none; }
-            /* .notice-section { max-height: 400px; } */ /* 在右側不需要限制高度 */
             .site-logo { width: 150px; margin-bottom: 20px; }
             .mobile-floating-bar { display: flex; } 
             h1 { font-size: 2.5rem; letter-spacing: 2px; }
@@ -384,7 +396,8 @@
                     Copyright © 2026 美鳳的家 版權所有
                 </div>
             </div>
-            </div>
+
+        </div>
 
         <div class="product-list" id="productList"></div>
         
@@ -434,7 +447,7 @@
 
                 <div class="notice-item"><span class="notice-title">🏦 匯款帳戶資訊</span><div class="bank-info"><strong>美鳳的家</strong><br>合作金庫 (006)<br>帳號：<span style="color:#8E1E20; font-weight:bold;">0180717681001</span><br>統編：72466723</div></div>
             </div>
-            </div>
+        </div>
     </div>
 
     <div class="mobile-floating-bar" id="floatBar">
@@ -488,6 +501,16 @@
                     <option value="台灣Pay">💳 台灣Pay (掃碼支付)</option>
                     <option value="餐廳櫃檯結帳">餐廳櫃檯結帳</option>
                 </select>
+            </div>
+
+            <div id="bankTransferDetails" class="bank-details-box">
+                <div class="bank-details-title">🏦 匯款帳戶資訊</div>
+                <div style="background:#fff; padding:10px; border-radius:5px; border:1px solid #eee;">
+                    <strong>美鳳的家</strong><br>
+                    合作金庫 (006)<br>
+                    帳號：<span class="bank-account-num">0180717681001</span><br>
+                    統編：72466723
+                </div>
             </div>
 
             <div id="taiwanPayContainer" class="qr-code-container">
@@ -624,15 +647,18 @@
             const payment = document.getElementById('custPayment').value;
             const bankContainer = document.getElementById('bankInfoContainer');
             const tpContainer = document.getElementById('taiwanPayContainer');
+            const bankDetails = document.getElementById('bankTransferDetails'); // 取得匯款資訊框
             const bankLabel = document.getElementById('bankInfoLabel');
             const last5Input = document.getElementById('custLast5Digits');
 
             // 先全部隱藏
             bankContainer.style.display = 'none';
             tpContainer.style.display = 'none';
+            bankDetails.style.display = 'none'; // 隱藏匯款資訊框
             
             if (payment === '匯款') {
                 bankContainer.style.display = 'block';
+                bankDetails.style.display = 'block'; // 顯示匯款資訊框
                 bankLabel.innerText = "匯款帳號後五碼";
                 last5Input.placeholder = "請輸入您的帳號後五碼";
             } 
