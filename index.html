@@ -84,7 +84,7 @@
             transition: all 0.3s ease;
         }
 
-        /* 🆕 功能：Sticky 分類選單樣式 */
+        /* Sticky 分類選單樣式 */
         .sticky-nav {
             position: fixed;
             top: 0;
@@ -113,7 +113,7 @@
             letter-spacing: 1px;
         }
 
-        /* Sticky 狀態下的按鈕樣式調整 (縮小一點) */
+        /* Sticky 狀態下的按鈕樣式調整 */
         .sticky-nav .cat-btn {
             padding: 6px 16px;
             font-size: 1rem;
@@ -130,7 +130,6 @@
             border-color: transparent;
         }
 
-        /* Sticky 狀態下的 Active 按鈕 */
         .sticky-nav .cat-btn.active, .sticky-nav .cat-btn:hover {
             background: #FFD700;
             color: #8E1E20;
@@ -268,7 +267,7 @@
             padding-right: 5px;
         }
         
-        /* 🆕 功能：加入購物車的回饋感動畫 (Shake Effect) */
+        /* 加入購物車的回饋感動畫 (Shake Effect) */
         @keyframes shakeCart {
             0% { transform: scale(1); border-color: var(--primary-color); }
             50% { transform: scale(1.02); border-color: #FFD700; box-shadow: 0 0 15px #FFD700; }
@@ -278,11 +277,11 @@
             animation: shakeCart 0.3s ease-in-out;
         }
 
-        /* 🆕 功能：免運進度條樣式 */
+        /* 🆕 修改：雙重免運進度條樣式 */
         .shipping-progress-container {
             margin-bottom: 20px;
             background: #fff8f8;
-            padding: 10px;
+            padding: 15px 15px 10px 15px; /* 稍微增加 Padding */
             border-radius: 8px;
             border: 1px dashed #eecaca;
         }
@@ -292,6 +291,7 @@
             margin-bottom: 5px;
             display: flex;
             justify-content: space-between;
+            align-items: center;
         }
         .progress-bar-bg {
             width: 100%;
@@ -335,11 +335,11 @@
         .float-total { color: #FFD700; font-size: 1.3em; font-weight: bold; font-family: 'Noto Serif TC', serif; }
         .float-btn { background: linear-gradient(135deg, #2D6A4F 0%, #40916C 100%); color: white; border: none; padding: 10px 25px; border-radius: 50px; font-weight: bold; font-size: 1.1em; cursor: pointer; }
 
-        /* 🆕 功能：回到頂部按鈕 (Back to Top) */
+        /* 回到頂部按鈕 (Back to Top) */
         #backTopBtn {
-            display: none; /* 預設隱藏 */
+            display: none; 
             position: fixed;
-            bottom: 80px; /* 在手機版結帳列上方 */
+            bottom: 80px; 
             right: 20px;
             z-index: 99;
             width: 50px;
@@ -512,12 +512,24 @@
         
         <div class="cart-section" id="cartSection">
             <div class="shipping-progress-container" id="shippingProgressBox">
-                <div class="progress-text">
-                    <span>🚚 宅配免運門檻 $3000</span>
-                    <span id="shippingDiff" style="color:#8E1E20; font-weight:bold;">還差 $3000</span>
+                <div style="margin-bottom: 15px;">
+                    <div class="progress-text">
+                        <span>🏪 7-11 <small style="color:#888;">(滿$2000免運)</small></span>
+                        <span id="diff711" style="font-weight:bold; color:#8E1E20;">還差 $2000</span>
+                    </div>
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar-fill" id="bar711"></div>
+                    </div>
                 </div>
-                <div class="progress-bar-bg">
-                    <div class="progress-bar-fill" id="shippingProgressBar"></div>
+
+                <div>
+                    <div class="progress-text">
+                        <span>🚛 黑貓宅配 <small style="color:#888;">(滿$3000免運)</small></span>
+                        <span id="diffCat" style="font-weight:bold; color:#8E1E20;">還差 $3000</span>
+                    </div>
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar-fill" id="barCat"></div>
+                    </div>
                 </div>
             </div>
 
@@ -741,7 +753,7 @@
             updatePaymentInput();
         };
 
-        /* 🆕 功能：處理捲動事件 (Sticky Bar & Back to Top) */
+        /* 處理捲動事件 (Sticky Bar & Back to Top) */
         window.onscroll = function() {
             // 1. 回到頂部按鈕邏輯
             const backTopBtn = document.getElementById("backTopBtn");
@@ -914,7 +926,7 @@
             saveCart(); 
             renderCart();
 
-            /* 🆕 功能：加入購物車的回饋感 (震動動畫) */
+            /* 加入購物車的回饋感 (震動動畫) */
             const cartSection = document.getElementById('cartSection');
             const floatBar = document.getElementById('floatBar');
             
@@ -943,9 +955,11 @@
             const floatBar = document.getElementById("floatBar");
             const floatTotal = document.getElementById("floatTotal");
             
-            // 🆕 功能：更新免運進度條
-            const shippingBar = document.getElementById("shippingProgressBar");
-            const shippingDiff = document.getElementById("shippingDiff");
+            /* 🆕 修改：取得兩個進度條與文字元件 */
+            const bar711 = document.getElementById("bar711");
+            const diff711 = document.getElementById("diff711");
+            const barCat = document.getElementById("barCat");
+            const diffCat = document.getElementById("diffCat");
 
             cartItemsEl.innerHTML = "";
             let total = 0;
@@ -973,22 +987,34 @@
             countEl.innerText = count;
             if(floatTotal) floatTotal.innerText = total;
 
-            /* 🆕 功能：免運計算邏輯 (以最高門檻 3000 為目標) */
-            const freeShippingThreshold = 3000;
-            let progress = (total / freeShippingThreshold) * 100;
-            if (progress > 100) progress = 100;
+            /* 🆕 修改：雙重免運門檻計算邏輯 */
             
-            shippingBar.style.width = progress + "%";
-            
-            if (total >= freeShippingThreshold) {
-                shippingDiff.innerHTML = "🎉 已達免運門檻！";
-                shippingDiff.style.color = "#2D6A4F";
-            } else if (total >= 2000) {
-                 shippingDiff.innerHTML = `7-11已免運 (差 $${freeShippingThreshold - total} 宅配免運)`;
-                 shippingDiff.style.color = "#8E1E20";
+            // 1. 計算 7-11 ($2000)
+            const threshold711 = 2000;
+            let progress711 = (total / threshold711) * 100;
+            if (progress711 > 100) progress711 = 100;
+            bar711.style.width = progress711 + "%";
+
+            if (total >= threshold711) {
+                diff711.innerHTML = "🎉 已達免運！";
+                diff711.style.color = "#2D6A4F";
             } else {
-                shippingDiff.innerHTML = `還差 $${freeShippingThreshold - total} 免運`;
-                shippingDiff.style.color = "#8E1E20";
+                diff711.innerHTML = `還差 $${threshold711 - total}`;
+                diff711.style.color = "#8E1E20";
+            }
+
+            // 2. 計算 宅配 ($3000)
+            const thresholdCat = 3000;
+            let progressCat = (total / thresholdCat) * 100;
+            if (progressCat > 100) progressCat = 100;
+            barCat.style.width = progressCat + "%";
+
+            if (total >= thresholdCat) {
+                diffCat.innerHTML = "🎉 已達免運！";
+                diffCat.style.color = "#2D6A4F";
+            } else {
+                diffCat.innerHTML = `還差 $${thresholdCat - total}`;
+                diffCat.style.color = "#8E1E20";
             }
         }
 
