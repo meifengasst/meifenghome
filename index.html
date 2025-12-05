@@ -120,6 +120,8 @@
             max-height: 90vh;
             z-index: 80;
             min-width: 250px; 
+            overflow-y: auto; 
+            padding-right: 5px;
         }
 
         /* Logo */
@@ -144,6 +146,7 @@
             display: flex;
             align-items: center;
             transition: transform 0.2s;
+            flex-shrink: 0; /* 防止被壓縮 */
         }
         .video-ticker-btn:hover { transform: scale(1.02); box-shadow: 0 0 15px rgba(255, 215, 0, 0.6); }
         .ticker-icon { background: #FFD700; color: #8E1E20; width: 40px; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; z-index: 2; font-weight: bold; }
@@ -151,7 +154,7 @@
         .ticker-text { display: inline-block; padding-left: 100%; animation: scroll-left 12s linear infinite; color: #FFF; font-weight: bold; font-size: 1rem; letter-spacing: 1px; }
         @keyframes scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
         
-        /* 公告欄 */
+        /* 公告欄 (貼心提醒) - 現在移到右邊購物車下方，樣式微調 */
         .notice-section {
             background: rgba(255, 248, 220, 0.95); 
             padding: 20px; 
@@ -160,8 +163,7 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
             font-size: 0.9rem; 
             line-height: 1.5;
-            overflow-y: auto; 
-            flex-grow: 1;
+            margin-top: 25px; /* 增加上方距離，與社群按鈕隔開 */
         }
         .notice-section h3 { color: var(--primary-color); border-bottom: 2px dashed #ccc; padding-bottom: 10px; margin-top: 0; text-align: center; font-family: 'Noto Serif TC', serif; font-size: 1.2rem; }
         .notice-item { margin-bottom: 15px; }
@@ -225,6 +227,7 @@
             z-index: 90; 
             box-shadow: 0 5px 20px rgba(0,0,0,0.1); 
             min-width: 250px;
+            padding-right: 5px;
         }
         .cart-section h2 { font-family: 'Noto Serif TC', serif; color: #333; border-bottom: 1px dashed #ccc; padding-bottom: 15px; margin-top: 0; }
         .cart-item { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #f0f0f0; padding: 15px 0; font-size: 0.95em; }
@@ -241,8 +244,8 @@
         .btn-google { background-color: #DB4437; } 
         .social-btn svg { width: 24px; height: 24px; margin-right: 10px; fill: white; }
 
-        /* --- 🆕 店家資訊區塊 (右下角新增) --- */
-        .shop-info { margin-top: 30px; font-size: 0.9rem; color: #555; text-align: center; background: #fafafa; padding: 15px; border-radius: 8px; border: 1px solid #eee; }
+        /* --- 店家資訊區塊 (移到左側) --- */
+        .shop-info { margin-bottom: 20px; font-size: 0.9rem; color: #555; text-align: center; background: #fafafa; padding: 15px; border-radius: 8px; border: 1px solid #eee; }
         .shop-info h3 { font-size: 1.1rem; color: #333; margin-top: 0; margin-bottom: 15px; font-family: 'Noto Serif TC', serif; border-bottom: 1px dashed #ccc; padding-bottom: 5px; }
         .info-item { margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 10px; text-align: left; }
         .info-item:last-of-type { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
@@ -302,7 +305,7 @@
         @media (max-width: 1024px) { 
             .container { flex-direction: column; align-items: stretch; } 
             .left-column, .cart-section { position: static; margin-bottom: 20px; max-height: none; }
-            .notice-section { max-height: 400px; }
+            /* .notice-section { max-height: 400px; } */ /* 在右側不需要限制高度 */
             .site-logo { width: 150px; margin-bottom: 20px; }
             .mobile-floating-bar { display: flex; } 
             h1 { font-size: 2.5rem; letter-spacing: 2px; }
@@ -347,56 +350,6 @@
                 </div>
             </div>
 
-            <div class="notice-section">
-                <h3>💡 貼心提醒</h3>
-                <div class="notice-item"><span class="notice-title">⏳ 取貨時間</span>為保新鮮，取貨日最快只能選 <strong class="highlight-red">3 天後</strong>。</div>
-                <div class="notice-item"><span class="notice-title">❄️ 包裝方式</span>全採用<strong>「真空冷凍包裝」</strong>，幫您保留最原汁原味的一刻！</div>
-                <div class="notice-item"><span class="notice-title">🚚 運費優惠</span>
-                    <ul style="padding-left: 20px; margin: 5px 0;"><li><strong>7-11 冷凍店到店</strong><br>滿 $2000 免運 (未滿以上酌收運費$100)</li><li><strong>黑貓宅配</strong><br>滿 $3000 免運 (未滿以上酌收運費$200)</li></ul>
-                    <div style="margin-top:10px; font-size:0.95em; background:#fff0f0; padding:10px; border-radius:8px; border-left:4px solid #d63031; line-height:1.5;"><strong style="color:#d63031;">⚠️ 特別注意：</strong><br>7-11 門市代收金額<br><strong>不得超過 $2000</strong>！<br>超過金額的朋友會通知麻煩<strong>轉帳至下方美鳳帳號</strong>。</div>
-                </div>
-                <div class="notice-item"><span class="notice-title">💰 付款方式</span>可選「貨到付款」、「匯款」或「台灣Pay掃碼」。</div>
-                
-                <div class="notice-item">
-                    <span class="notice-title">🔄 訂單修改說明</span>
-                    <div style="margin-top:5px; line-height:1.6; background: rgba(255,255,255,0.6); padding:10px; border-radius:8px;">
-                        <strong style="color: var(--primary-color);">Q：下單後可以修改訂單內容嗎？</strong><br>
-                        A：為確保庫存數量準確及出貨效率，訂單成立後<span class="highlight-red">無法直接修改</span>內容。
-                        <ul style="padding-left: 20px; margin: 8px 0; color: #333;">
-                            <li style="margin-bottom:5px;"><strong>若尚未出貨：</strong> 請直接聯絡客服取消該筆訂單，並重新下單購買您需要的商品。</li>
-                            <li style="margin-bottom:5px;"><strong>若已出貨：</strong> 需待收到商品後，依照退換貨流程辦理。</li>
-                            <li><strong>若僅需修改收件資訊：</strong> 請盡速聯繫官方 LINE/客服信箱，若包裹尚未寄出我們將盡力協助變更。</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="notice-item"><span class="notice-title">🏦 匯款帳戶資訊</span><div class="bank-info"><strong>美鳳的家</strong><br>合作金庫 (006)<br>帳號：<span style="color:#8E1E20; font-weight:bold;">0180717681001</span><br>統編：72466723</div></div>
-            </div>
-        </div>
-
-        <div class="product-list" id="productList"></div>
-        
-        <div class="cart-section">
-            <h2>📋 您的點餐單 <span id="cartCount" style="font-size:0.7em; background:var(--primary-color); color:white; padding:2px 8px; border-radius:10px; vertical-align:middle;">0</span></h2>
-            <div id="cartItems"><p style="color: #999; text-align: center; padding: 20px;">客官，還沒點菜呢！</p></div>
-            <div class="total">總計: $<span id="totalPrice">0</span></div>
-            <button class="checkout-btn" onclick="openCheckoutForm()">前往結帳填寫資料</button>
-
-            <div class="social-area">
-                <a href="https://www.facebook.com/MeiFengHOME" target="_blank" class="social-btn btn-fb">
-                    <svg viewBox="0 0 24 24"><path d="M14.07,3c-2.8,0-4.7,1.72-4.7,4.82V10.5H6.5v3.62h2.87v9.12h3.74V14.12h2.93l0.46-3.62h-3.39V8.04c0-1,0.28-1.76,1.79-1.76h1.91V3.11C16.51,3.06,15.34,3,14.07,3z"></path></svg>
-                    追蹤美鳳的家 FB
-                </a>
-                <a href="https://line.me/R/ti/p/%40hig1742y" target="_blank" class="social-btn btn-line">
-                    <svg viewBox="0 0 24 24"><path d="M12,2C6.48,2,2,5.88,2,10.66c0,2.69,1.43,5.09,3.77,6.64c0.16,0.11,0.38,0.34,0.28,0.78 c-0.1,0.47-0.37,1.83-0.41,2.2c-0.06,0.56,0.29,0.55,0.61,0.3c0.41-0.32,2.26-1.54,3.08-2.1c0.43-0.29,0.98-0.33,1.38-0.29 c0.41,0.04,0.85,0.06,1.29,0.06c5.52,0,10-3.88,10-8.66C22,5.88,17.52,2,12,2z M17.34,13.61H6.66c-0.34,0-0.62-0.28-0.62-0.62 v-0.01c0-0.34,0.28-0.62,0.62-0.62h10.68c0.34,0,0.62,0.28,0.62,0.62v0.01C17.96,13.33,17.68,13.61,17.34,13.61z M17.34,10.66H6.66 c-0.34,0-0.62-0.28-0.62-0.62v-0.01c0-0.34,0.28-0.62,0.62-0.62h10.68c0.34,0,0.62,0.28,0.62,0.62v0.01 C17.96,10.38,17.68,10.66,17.34,10.66z M17.34,7.71H6.66C6.32,7.71,6.04,7.43,6.04,7.09v-0.01c0-0.34,0.28-0.62,0.62-0.62h10.68 c0.34,0,0.62,0.28,0.62,0.62v0.01C17.96,7.43,17.68,7.71,17.34,7.71z"></path></svg>
-                    新增 LINE 好友
-                </a>
-                <a href="https://www.google.com/search?gs_ssp=eJzj4tVP1zc0zLAsKigqyDMxYLRSNagwNjGzMEk2STJJNDa3SDFOszKoSEsyNEs0NUpJMjAytjROM_Hieb6v7-Xmzc9ntTxdtw0AsZoYFA&q=%E7%BE%8E%E9%B3%B3%E7%9A%84%E5%AE%B6&oq=%E7%BE%8E%E9%B3%B3%E7%9A%84%E5%AE%B6&gs_lcrp=EgZjaHJvbWUqDQgBEC4YrwEYxwEYgAQyCggAEAAY4wIYgAQyDQgBEC4YrwEYxwEYgAQyBwgCEAAYgAQyBwgDEAAYgAQyBwgEEAAYgAQyBwgFEAAYgAQyBwgGEAAYgAQyBwgHEAAYgAQyBwgIEAAYgAQyBggJEAAYHtIBCDI5NTRqMGo3qAIAsAIA&sourceid=chrome&ie=UTF-8" target="_blank" class="social-btn btn-google">
-                    <svg viewBox="0 0 24 24"><path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"/></svg>
-                    Google 地圖/評論
-                </a>
-            </div>
-
             <div class="shop-info">
                 <h3>ℹ️ 店家資訊 & 內用公告</h3>
                 
@@ -430,6 +383,56 @@
                 <div class="copyright-text">
                     Copyright © 2026 美鳳的家 版權所有
                 </div>
+            </div>
+            </div>
+
+        <div class="product-list" id="productList"></div>
+        
+        <div class="cart-section">
+            <h2>📋 您的點餐單 <span id="cartCount" style="font-size:0.7em; background:var(--primary-color); color:white; padding:2px 8px; border-radius:10px; vertical-align:middle;">0</span></h2>
+            <div id="cartItems"><p style="color: #999; text-align: center; padding: 20px;">客官，還沒點菜呢！</p></div>
+            <div class="total">總計: $<span id="totalPrice">0</span></div>
+            <button class="checkout-btn" onclick="openCheckoutForm()">前往結帳填寫資料</button>
+
+            <div class="social-area">
+                <a href="https://www.facebook.com/MeiFengHOME" target="_blank" class="social-btn btn-fb">
+                    <svg viewBox="0 0 24 24"><path d="M14.07,3c-2.8,0-4.7,1.72-4.7,4.82V10.5H6.5v3.62h2.87v9.12h3.74V14.12h2.93l0.46-3.62h-3.39V8.04c0-1,0.28-1.76,1.79-1.76h1.91V3.11C16.51,3.06,15.34,3,14.07,3z"></path></svg>
+                    追蹤美鳳的家 FB
+                </a>
+                <a href="https://line.me/R/ti/p/%40hig1742y" target="_blank" class="social-btn btn-line">
+                    <svg viewBox="0 0 24 24"><path d="M12,2C6.48,2,2,5.88,2,10.66c0,2.69,1.43,5.09,3.77,6.64c0.16,0.11,0.38,0.34,0.28,0.78 c-0.1,0.47-0.37,1.83-0.41,2.2c-0.06,0.56,0.29,0.55,0.61,0.3c0.41-0.32,2.26-1.54,3.08-2.1c0.43-0.29,0.98-0.33,1.38-0.29 c0.41,0.04,0.85,0.06,1.29,0.06c5.52,0,10-3.88,10-8.66C22,5.88,17.52,2,12,2z M17.34,13.61H6.66c-0.34,0-0.62-0.28-0.62-0.62 v-0.01c0-0.34,0.28-0.62,0.62-0.62h10.68c0.34,0,0.62,0.28,0.62,0.62v0.01C17.96,13.33,17.68,13.61,17.34,13.61z M17.34,10.66H6.66 c-0.34,0-0.62-0.28-0.62-0.62v-0.01c0-0.34,0.28-0.62,0.62-0.62h10.68c0.34,0,0.62,0.28,0.62,0.62v0.01 C17.96,10.38,17.68,10.66,17.34,10.66z M17.34,7.71H6.66C6.32,7.71,6.04,7.43,6.04,7.09v-0.01c0-0.34,0.28-0.62,0.62-0.62h10.68 c0.34,0,0.62,0.28,0.62,0.62v0.01C17.96,7.43,17.68,7.71,17.34,7.71z"></path></svg>
+                    新增 LINE 好友
+                </a>
+                <a href="https://www.google.com/search?gs_ssp=eJzj4tVP1zc0zLAsKigqyDMxYLRSNagwNjGzMEk2STJJNDa3SDFOszKoSEsyNEs0NUpJMjAytjROM_Hieb6v7-Xmzc9ntTxdtw0AsZoYFA&q=%E7%BE%8E%E9%B3%B3%E7%9A%84%E5%AE%B6&oq=%E7%BE%8E%E9%B3%B3%E7%9A%84%E5%AE%B6&gs_lcrp=EgZjaHJvbWUqDQgBEC4YrwEYxwEYgAQyCggAEAAY4wIYgAQyDQgBEC4YrwEYxwEYgAQyBwgCEAAYgAQyBwgDEAAYgAQyBwgEEAAYgAQyBwgFEAAYgAQyBwgGEAAYgAQyBwgHEAAYgAQyBwgIEAAYgAQyBggJEAAYHtIBCDI5NTRqMGo3qAIAsAIA&sourceid=chrome&ie=UTF-8" target="_blank" class="social-btn btn-google">
+                    <svg viewBox="0 0 24 24"><path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"/></svg>
+                    Google 地圖/評論
+                </a>
+            </div>
+
+            <div class="notice-section">
+                <h3>💡 貼心提醒</h3>
+                <div class="notice-item"><span class="notice-title">⏳ 取貨時間</span>為保新鮮，取貨日最快只能選 <strong class="highlight-red">3 天後</strong>。</div>
+                <div class="notice-item"><span class="notice-title">❄️ 包裝方式</span>全採用<strong>「真空冷凍包裝」</strong>，幫您保留最原汁原味的一刻！</div>
+                <div class="notice-item"><span class="notice-title">🚚 運費優惠</span>
+                    <ul style="padding-left: 20px; margin: 5px 0;"><li><strong>7-11 冷凍店到店</strong><br>滿 $2000 免運 (未滿以上酌收運費$100)</li><li><strong>黑貓宅配</strong><br>滿 $3000 免運 (未滿以上酌收運費$200)</li></ul>
+                    <div style="margin-top:10px; font-size:0.95em; background:#fff0f0; padding:10px; border-radius:8px; border-left:4px solid #d63031; line-height:1.5;"><strong style="color:#d63031;">⚠️ 特別注意：</strong><br>7-11 門市代收金額<br><strong>不得超過 $2000</strong>！<br>超過金額的朋友會通知麻煩<strong>轉帳至下方美鳳帳號</strong>。</div>
+                </div>
+                <div class="notice-item"><span class="notice-title">💰 付款方式</span>可選「貨到付款」、「匯款」或「台灣Pay掃碼」。</div>
+                
+                <div class="notice-item">
+                    <span class="notice-title">🔄 訂單修改說明</span>
+                    <div style="margin-top:5px; line-height:1.6; background: rgba(255,255,255,0.6); padding:10px; border-radius:8px;">
+                        <strong style="color: var(--primary-color);">Q：下單後可以修改訂單內容嗎？</strong><br>
+                        A：為確保庫存數量準確及出貨效率，訂單成立後<span class="highlight-red">無法直接修改</span>內容。
+                        <ul style="padding-left: 20px; margin: 8px 0; color: #333;">
+                            <li style="margin-bottom:5px;"><strong>若尚未出貨：</strong> 請直接聯絡客服取消該筆訂單，並重新下單購買您需要的商品。</li>
+                            <li style="margin-bottom:5px;"><strong>若已出貨：</strong> 需待收到商品後，依照退換貨流程辦理。</li>
+                            <li><strong>若僅需修改收件資訊：</strong> 請盡速聯繫官方 LINE/客服信箱，若包裹尚未寄出我們將盡力協助變更。</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="notice-item"><span class="notice-title">🏦 匯款帳戶資訊</span><div class="bank-info"><strong>美鳳的家</strong><br>合作金庫 (006)<br>帳號：<span style="color:#8E1E20; font-weight:bold;">0180717681001</span><br>統編：72466723</div></div>
             </div>
             </div>
     </div>
