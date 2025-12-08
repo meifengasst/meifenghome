@@ -420,7 +420,7 @@
             { id: 28, name: "客家小炒", price: 380, category: "蔬菜類", image: "veg1.jpg" },
             { id: 29, name: "蛋酥白菜滷", price: 380, category: "蔬菜類", image: "veg3.jpg" },
             { id: 30, name: "雞油燜筍", price: 280, category: "蔬菜類", image: "veg2.jpg" },
-            { id: 31, name: "干貝絲長年菜", price: 280, category: "蔬菜類", image: "veg4.jpg" },           
+            { id: 31, name: "干貝絲長年菜", price: 280, category: "蔬菜類", image: "veg4.jpg" },            
             { id: 32, name: "蘿蔔糕(只能冷藏寄送)", price: 100, category: "甜點類", image: "cake.jpg" },
             { id: 33, name: "芝麻湯圓(只能冷凍寄送)", price: 150, category: "甜點類", image: "sweet1.jpg" },
             { id: 34, name: "花生湯圓(只能冷凍寄送)", price: 150, category: "甜點類", image: "sweet1.jpg" },
@@ -524,77 +524,71 @@
             else if (payment === '台灣Pay') { tpContainer.style.display = 'block'; bankContainer.style.display = 'block'; bankLabel.innerText = "台灣Pay/轉帳帳號 末五碼"; last5Input.placeholder = "請輸入付款帳號/卡號末五碼"; } 
             else { last5Input.value = ""; }
         }
-/* --- 🆕 媒體專訪功能 (列表版) --- */
-function playInterviewVideo() {
-    // 🎥 1. 設定影片清單
-    const videoData = [
-        {
-            id: "vDXSZDidzGA",
-            title: "客家無菜單料理 創意美食撫慰人心",
-            desc: "尋找台灣感動力"
-        },
-        {
-            id: "M76_2Yu6zoo",
-            title: "苗栗三灣無菜單料理！超過十道客家媽媽的手路菜！",
-            desc: "youtuber:我是馬鈴薯小姐雁靈"
-        },
-        {
-            id: "YUifqRLUQGY", 
-            title: "天菜就醬吃",
-            desc: "食尚玩家"
-        },
-        {
-            id: "SHta9dzSySo",
-            title: "稀有客家料理 好多創意料理超用心！",
-            desc: "youtuber:六一遛阿寬"
-        },
-        {
-            id: "oxEPNX4Af4M",
-            title: "苗栗無菜單客家料理 多樣道地合菜!!",
-            desc: "youtuber:牛舌"
-        }
-        // 若有更多影片，繼續往下複製即可...
-    ];
-    }
 
-    // 🎥 2. 產生影片選單 HTML (這是幫你補上的功能，原本你只有定義資料但沒有動作)
-    let videoListHtml = '<div class="video-list-container">';
-    videoData.forEach(v => {
-        // 處理 YouTube 連結 ID (有些ID帶有 &t= 時間參數，需稍微處理)
-        let safeId = v.id.split('&')[0]; 
-        videoListHtml += `
-            <a class="video-item" href="https://www.youtube.com/watch?v=${v.id}" target="_blank">
-                <div class="video-thumb">
-                    <img src="https://img.youtube.com/vi/${safeId}/hqdefault.jpg" loading="lazy">
-                </div>
-                <div class="video-info">
-                    <div class="video-title">${v.title}</div>
-                    <div class="video-desc">${v.desc}</div>
-                </div>
-            </a>
-        `;
-    });
-    videoListHtml += '</div>';
+        /* --- 🆕 媒體專訪功能 (列表版) --- */
+        function playInterviewVideo() {
+            // 🎥 1. 設定影片清單
+            const videoData = [
+                {
+                    id: "vDXSZDidzGA",
+                    title: "客家無菜單料理 創意美食撫慰人心",
+                    desc: "尋找台灣感動力"
+                },
+                {
+                    id: "M76_2Yu6zoo",
+                    title: "苗栗三灣無菜單料理！超過十道客家媽媽的手路菜！",
+                    desc: "youtuber:我是馬鈴薯小姐雁靈"
+                },
+                {
+                    id: "YUifqRLUQGY", 
+                    title: "天菜就醬吃",
+                    desc: "食尚玩家"
+                },
+                {
+                    id: "SHta9dzSySo",
+                    title: "稀有客家料理 好多創意料理超用心！",
+                    desc: "youtuber:六一遛阿寬"
+                },
+                {
+                    id: "oxEPNX4Af4M",
+                    title: "苗栗無菜單客家料理 多樣道地合菜!!",
+                    desc: "youtuber:牛舌"
+                }
+            ];
+            
+            // 🎥 2. 產生影片選單 HTML
+            let videoListHtml = '<div class="video-list-container">';
+            videoData.forEach(v => {
+                let safeId = v.id.split('&')[0]; 
+                videoListHtml += `
+                    <a class="video-item" href="https://www.youtube.com/watch?v=${v.id}" target="_blank">
+                        <div class="video-thumb">
+                            <img src="https://img.youtube.com/vi/${safeId}/hqdefault.jpg" loading="lazy">
+                        </div>
+                        <div class="video-info">
+                            <div class="video-title">${v.title}</div>
+                            <div class="video-desc">${v.desc}</div>
+                        </div>
+                    </a>
+                `;
+            });
+            videoListHtml += '</div>';
 
-    // 🎥 3. 透過 SweetAlert 顯示
-    Swal.fire({
-        title: '🎥 美鳳的家 媒體專訪',
-        html: videoListHtml,
-        showConfirmButton: false, // 不顯示確認按鈕，點擊背景關閉
-        showCloseButton: true,
-        width: 600,
-        padding: '10px',
-        background: '#f9f9f9'
-    });
+            // 🎥 3. 透過 SweetAlert 顯示
+            Swal.fire({
+                title: '🎥 美鳳的家 媒體專訪',
+                html: videoListHtml,
+                showConfirmButton: false, 
+                showCloseButton: true,
+                width: 600,
+                padding: '10px',
+                background: '#f9f9f9'
+            });
+        } 
 
-} // ✅ <--- 這一行非常重要！一定要加上這個右大括號，才能讓後面的程式碼恢復正常。
+        function saveCart() { localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart)); }
 
-// --- 也就是在 function saveCart() 之前，必須要結束上面的函式 ---
-
-function saveCart() { localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart)); }
-
-function renderProducts(filterCat) {
-    // ... 後續程式碼保持不變 ...
+        function renderProducts(filterCat) {
             const productListEl = document.getElementById("productList"); productListEl.innerHTML = ""; 
             const filteredProducts = filterCat === '全部' ? products : products.filter(p => p.category === filterCat);
             filteredProducts.forEach(product => {
@@ -685,9 +679,3 @@ function renderProducts(filterCat) {
     </script>
 </body>
 </html>
-
-
-
-
-
-
