@@ -773,7 +773,7 @@
             orderDetails += `------------------\n商品小計：$${subtotal}\n運費：$${shipping}\n💰 總金額：$${finalTotal}`;
             const payload = { message: orderDetails, customer: { name, mobile, phone, address, delivery, payment, last5, date, note, total: finalTotal } };
             fetch(googleScriptUrl, { method: "POST", body: JSON.stringify(payload), mode: "no-cors", headers: { "Content-Type": "text/plain" } }).then(() => {
-                let successMsg = '訂單內容發送到您登記的手機簡訊中';
+                let successMsg = '已收到您的訂單囉 有任何問題 歡迎與我們聯繫';
                 if(payment === '台灣Pay') { successMsg = '訂單已送出，確認收到款項後會盡快安排出貨！'; }
                 Swal.fire({ icon: 'success', title: '訂單已送出', text: successMsg, confirmButtonColor: '#2D6A4F' });
                 cart = []; localStorage.removeItem(CART_STORAGE_KEY); renderCart(); closeCheckoutForm(); btn.innerText = originalText; btn.disabled = false;
@@ -784,3 +784,4 @@
     </script>
 </body>
 </html>
+
