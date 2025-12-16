@@ -510,7 +510,7 @@
             { id: 28, name: "客家小炒", price: 380, category: "蔬菜類", image: "veg1.jpg" },
             { id: 29, name: "蛋酥白菜滷", price: 380, category: "蔬菜類", image: "veg3.jpg" },
             { id: 30, name: "雞油燜筍", price: 280, category: "蔬菜類", image: "veg2.jpg" },
-            { id: 31, name: "干貝絲長年菜", price: 280, category: "蔬菜類", image: "veg4.jpg" },           
+            { id: 31, name: "干貝絲長年菜", price: 280, category: "蔬菜類", image: "veg4.jpg" },            
             { id: 32, name: "蘿蔔糕(只能冷藏寄送)", price: 100, category: "甜點類", image: "cake.jpg" },
             { id: 33, name: "芝麻湯圓(只能冷凍寄送)", price: 150, category: "甜點類", image: "sweet1.jpg" },
             { id: 34, name: "花生湯圓(只能冷凍寄送)", price: 150, category: "甜點類", image: "sweet1.jpg" },
@@ -530,37 +530,37 @@
             if (savedCart) { try { cart = JSON.parse(savedCart); renderCart(); } catch(e) { console.error("購物車讀取失敗", e); } }
             renderProducts('全部'); updateAddressInput(); updatePaymentInput();
 
-            // 🔥 新增：載入時自動跳出公告視窗
+            // 🔥 新增：載入時自動跳出公告視窗 (已優化手機版顯示)
             Swal.fire({
                 title: '📢 內用公告 & 年菜取貨',
                 html: `
-                    <div style="text-align: left; font-weight: bold; color: #333; line-height: 1.6; font-size: 1rem;">
-                        <div style="margin-bottom: 12px;">
+                    <div style="text-align: left; font-weight: bold; color: #333; line-height: 1.5; font-size: 0.95rem; max-height: 60vh; overflow-y: auto; padding-right: 5px;">
+                        <div style="margin-bottom: 10px;">
                             <span style="color: #8E1E20; font-size: 1.1em;">1. 內用收費標準</span> <small style="color: #666;">&lt;2026年元月後適用&gt;</small><br>
-                            <ul style="margin: 5px 0; padding-left: 20px;">
+                            <ul style="margin: 3px 0; padding-left: 20px;">
                                 <li>90cm 以下：<span style="color: #2D6A4F;">免費</span></li>
                                 <li>90-130cm：清潔費 $100/人</li>
                                 <li>130cm 以上：$550/人</li>
                             </ul>
                             <span style="color: #8E1E20;">※ 平日/假日<非農曆春節>以上皆不收服務費</span>
                         </div>
-                        <hr style="border-top: 1px dashed #ccc; margin: 10px 0;">
-                        <div style="margin-bottom: 12px;">
+                        <div style="border-top: 1px dashed #ccc; margin: 8px 0;"></div>
+                        <div style="margin-bottom: 10px;">
                             <span style="color: #8E1E20; font-size: 1.1em;">2. 內用訂位提醒</span><br>
-                            <span style="font-size: 1.2em; font-weight: bold;">中餐 11:00 前 / 晚餐 17:00 前</span><br>
-                            <span style="color: #d63031; font-size: 1.2em; font-weight: bold;">為最後預約用餐時段喔</span><br>
+                            <span style="font-size: 1.1em; font-weight: bold;">中餐 11:00 前 / 晚餐 17:00 前</span><br>
+                            <span style="color: #d63031; font-size: 1.1em; font-weight: bold;">為最後預約用餐時段喔</span><br>
                             <small style="color: #666;">&lt;因備料不及 無法提供最完善服務 請見諒&gt;</small>
                         </div>
-                        <hr style="border-top: 1px dashed #ccc; margin: 10px 0;">
-                        <div style="margin-bottom: 12px;">
+                        <div style="border-top: 1px dashed #ccc; margin: 8px 0;"></div>
+                        <div style="margin-bottom: 10px;">
                             <span style="color: #8E1E20; font-size: 1.1em;">3. 農曆春節 內用收費標準</span><br>
                             <small style="color: #D4AF37; font-weight: bold;">&lt;除夕/初二/初三&gt;</small><br>
                             <span style="color: #d63031;">※ 農曆春節上述三天 內用一人 780元 另酌收 10% 服務費</span>
                         </div>
-                        <hr style="border-top: 1px dashed #ccc; margin: 10px 0;">
+                        <div style="border-top: 1px dashed #ccc; margin: 8px 0;"></div>
                         <div style="margin-bottom: 0;">
                             <span style="color: #8E1E20; font-size: 1.1em;">4. 年菜取貨/宅配時間</span><br>
-                            <div style="background: #fff8e1; padding: 10px; border-radius: 8px; margin-top: 5px; font-size: 0.9em; font-weight: normal;">
+                            <div style="background: #fff8e1; padding: 8px; border-radius: 8px; margin-top: 5px; font-size: 0.9em; font-weight: normal;">
                                 <strong style="color:#d63031;">【年節檔期之前】</strong><br>
                                 三日內可送，不指定收貨時段。<br>
                                 <div style="margin-top:5px;"></div>
@@ -576,10 +576,14 @@
                 `,
                 confirmButtonText: '收到，我瞭解了',
                 confirmButtonColor: '#8E1E20',
-                width: 500,
-                padding: '1.5em',
+                width: '90%', 
+                maxWidth: '500px',
+                padding: '1em',
                 background: '#fff',
-                backdrop: `rgba(0,0,0,0.6)`
+                backdrop: `rgba(0,0,0,0.6)`,
+                customClass: {
+                    popup: 'mobile-swal-popup' 
+                }
             });
         };
 
@@ -756,22 +760,57 @@
             let isValid = true;
             const nameEl = document.getElementById("custName"); const mobileEl = document.getElementById("custMobile"); const addressEl = document.getElementById("custAddress"); const dateEl = document.getElementById("custDate"); const last5El = document.getElementById("custLast5Digits"); const delivery = document.getElementById("custDelivery").value; const payment = document.getElementById("custPayment").value;
             const markError = (el) => { el.classList.add('input-error'); el.classList.add('shake-animation'); setTimeout(() => el.classList.remove('shake-animation'), 500); isValid = false; };
+            
+            // --- 驗證姓名 ---
             if (!nameEl.value.trim()) markError(nameEl);
-            if (!mobileEl.value.trim()) markError(mobileEl);
+            
+            // --- 🔥 新增驗證：手機號碼格式檢查 ---
+            // 規則：移除 dash 後必須是 09 開頭且總長 10 碼
+            const phonePattern = /^09\d{8}$/;
+            const cleanPhone = mobileEl.value.replace(/-/g, "").trim();
+            if (!mobileEl.value.trim() || !phonePattern.test(cleanPhone)) {
+                Swal.fire({
+                    icon: 'error',
+                    title: '手機號碼格式錯誤',
+                    text: '請輸入正確的台灣手機號碼 (例如 0912345678)',
+                    confirmButtonColor: '#8E1E20'
+                });
+                markError(mobileEl);
+            }
+            
+            // --- 驗證日期 ---
             if (!dateEl.value) markError(dateEl);
+            
+            // --- 驗證地址 ---
             if (delivery !== '到店自取') { if (!addressEl.value.trim()) markError(addressEl); }
+            
+            // --- 驗證末五碼 ---
             if (payment === '匯款' || payment === '台灣Pay') { if (!last5El.value.trim()) markError(last5El); }
+            
             if (!isValid) return;
             submitOrder();
         }
 
         function submitOrder() {
-            const name = document.getElementById("custName").value; const mobile = document.getElementById("custMobile").value; const phone = document.getElementById("custPhone").value; const address = document.getElementById("custAddress").value; const delivery = document.getElementById("custDelivery").value; const date = document.getElementById("custDate").value; const note = document.getElementById("custNote").value; const payment = document.getElementById("custPayment").value; const last5 = document.getElementById("custLast5Digits").value;
+            const name = document.getElementById("custName").value; 
+            // 傳送給後端前，確保手機號碼是乾淨的 (但為了閱讀方便，這裡傳原始值，後端再處理也可以，這邊保留原始值)
+            const mobile = document.getElementById("custMobile").value; 
+            const phone = document.getElementById("custPhone").value; 
+            const address = document.getElementById("custAddress").value; 
+            const delivery = document.getElementById("custDelivery").value; 
+            const date = document.getElementById("custDate").value; 
+            const note = document.getElementById("custNote").value; 
+            const payment = document.getElementById("custPayment").value; 
+            const last5 = document.getElementById("custLast5Digits").value;
+            
             const btn = document.querySelector(".submit-btn"); const originalText = btn.innerText; btn.innerText = "⏳ 訂單傳送中..."; btn.disabled = true;
             const subtotal = document.getElementById("checkoutSubtotal").innerText; const shipping = document.getElementById("checkoutShipping").innerText; const finalTotal = document.getElementById("checkoutTotal").innerText;
+            
             let orderDetails = "🛒 購買清單：\n"; cart.forEach(item => { orderDetails += `${item.name} x ${item.quantity} = $${item.price * item.quantity}\n`; });
             orderDetails += `------------------\n商品小計：$${subtotal}\n運費：$${shipping}\n💰 總金額：$${finalTotal}`;
+            
             const payload = { message: orderDetails, customer: { name, mobile, phone, address, delivery, payment, last5, date, note, total: finalTotal } };
+            
             fetch(googleScriptUrl, { method: "POST", body: JSON.stringify(payload), mode: "no-cors", headers: { "Content-Type": "text/plain" } }).then(() => {
                 let successMsg = '已收到您的訂單囉 有任何問題 歡迎與我們聯繫';
                 if(payment === '台灣Pay') { successMsg = '訂單已送出，確認收到款項後會盡快安排出貨！'; }
@@ -784,6 +823,3 @@
     </script>
 </body>
 </html>
-
-
-
