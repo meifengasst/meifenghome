@@ -474,7 +474,10 @@
     </div>
 
     <script>
+        // ▼▼▼ 請務必將下方的網址換成你自己部屬的 Google Apps Script 網址 ▼▼▼
         const googleScriptUrl = "https://script.google.com/macros/s/AKfycbxcMFX4Jh4znkBscP85vPW5-Q_Pq2FqPfMMON4jfCUYQZmUDPuuthLokv4q65RqVwO42A/exec";
+        // ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲
+
         const CART_STORAGE_KEY = 'meifeng_cart_v2026';
 
         const products = [
@@ -530,11 +533,11 @@
             if (savedCart) { try { cart = JSON.parse(savedCart); renderCart(); } catch(e) { console.error("購物車讀取失敗", e); } }
             renderProducts('全部'); updateAddressInput(); updatePaymentInput();
 
-            // 🔥 新增：載入時自動跳出公告視窗 (已優化手機版顯示)
+            // 🔥 新增：載入時自動跳出公告視窗 (已優化手機版顯示：限制高度 + 內部捲軸)
             Swal.fire({
                 title: '📢 內用公告 & 年菜取貨',
                 html: `
-                    <div style="text-align: left; font-weight: bold; color: #333; line-height: 1.5; font-size: 0.95rem; max-height: 60vh; overflow-y: auto; padding-right: 5px;">
+                    <div style="text-align: left; font-weight: bold; color: #333; line-height: 1.5; font-size: 0.95rem; max-height: 50vh; overflow-y: auto; padding-right: 5px;">
                         <div style="margin-bottom: 10px;">
                             <span style="color: #8E1E20; font-size: 1.1em;">1. 內用收費標準</span> <small style="color: #666;">&lt;2026年元月後適用&gt;</small><br>
                             <ul style="margin: 3px 0; padding-left: 20px;">
@@ -576,14 +579,10 @@
                 `,
                 confirmButtonText: '收到，我瞭解了',
                 confirmButtonColor: '#8E1E20',
-                width: '90%', 
-                maxWidth: '500px',
+                width: '480px', 
                 padding: '1em',
                 background: '#fff',
-                backdrop: `rgba(0,0,0,0.6)`,
-                customClass: {
-                    popup: 'mobile-swal-popup' 
-                }
+                backdrop: `rgba(0,0,0,0.6)`
             });
         };
 
